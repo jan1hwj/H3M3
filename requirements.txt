@@ -1,0 +1,11 @@
+flask
+python-dotenv
+ipykernel
+torch
+pillow
+transformers
+huggingface_hub
+openai
+langchain-openai
+langchain_community
+

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Step 2: Modify Prompt{% endblock %}
+
+{% block content %}
+<div class="container">
+    
+  <div class="card text-bg-light mb-3" style="max-width: auto;">
+    <div class="card-header">Instruction</div>
+    <div class="card-body">
+      <h5 class="card-title">Step 2: Modify Your Recipe</h5>
+      <p class="card-text">1. Auto Mode: Click the "Quick Generation" button and our system will generate a new recipe in seconds. Easy Peasy, no need to think! 
+        <br>
+        2. Customization Mode: Feel free to select your preferred cuisine, serving size, allergens, etc. The flexibility of change helps us generate a recipe that better satisfies your appetite.
+        <br>
+        3. Review Your Recipe: The generated recipe will be displayed on the right side. Feel free to shuffle a new one or restart the process!
+      </p>
+    </div>
+  </div>
+    
+  <button type="button" class="collapsible">Your Ingredients</button>
+  <div class="collapse-content">
+    <ul>
+      {% for ingredient in ingredients %}
+        <li>{{ ingredient | trim }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="row step2">
+    <div class="col-md-6">
+      
+      <h5><b>Auto Mode</b></h5>
+      <small class="form-text text-muted">Click the following button and the system will generate a new recipe automatically.</small>
+      <br><br>
+      <div class="d-grid gap-2">
+        <button id="quickGenBtn" class="btn btn-outline-primary" type="button">Quick Generation</button>
+      </div>
+
+      <br><br>
+      
+      <h5><b>Customization Mode</b></h5>
+      <small class="form-text text-muted">Feel free to make any selections to customize your recipe.</small>
+      <form id="customRecipeForm">
+        <div class="mb-3">
+          <label for="cuisine" class="form-label">Preferred Cuisine</label>
+          <select class="form-select" id="cuisine" name="cuisine">
+            <option value="Any">Any</option>
+            <option value="Italian">Italian</option>
+            <option value="French">French</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Mediterranean">Mediterranean</option>
+            <option value="Indian">Indian</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Korean">Korean</option>
+            <option value="Thai">Thai</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="servings" class="form-label">Serving Size</label>
+          <input type="number" class="form-control" id="servings" name="servings" min="1" max="20" value="1">
+        </div>
+        <div class="mb-3">
+          <label for="flavor" class="form-label">Preferred Flavor</label>
+          <select class="form-select" id="flavor" name="flavor">
+            <option value="Any">Any</option>
+            <option value="Sweet">Sweet</option>
+            <option value="Spicy">Spicy</option>
+            <option value="Savory">Savory</option>
+            <option value="Fresh">Fresh and Light</option>
+          </select>
+        </div>
+        <button type="button" id="customGenBtn" class="btn btn-outline-primary">Generate Recipe</button>
+      </form>
+      <br><br>
+    </div>
+
+    <div class="col-md-6">
+      <h5><b>Your Recipe</b></h5>
+      <small class="form-text text-muted">Your generated recipe will appear here.</small>
+      <br><br>
+    
+      <div class="card">
+        <div class="card-body" id="recipeDisplay">
+          No recipe generated yet. Use either Auto Mode or Customization Mode to start!
+        </div>
+      </div>
+    
+      <br>
+      <p class="text-center" id="stepCounter">Step 0 of 0</p>
+      <br>
+      
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button id="prevStepBtn" type="button" class="btn btn-outline-primary" disabled>Previous Step</button>
+        <button id="nextStepBtn" type="button" class="btn btn-outline-primary" disabled>Next Step</button>
+        <button id="shuffleBtn" type="button" class="btn btn-outline-success">Shuffle Recipe</button>
+        <button id="restartBtn" type="button" class="btn btn-outline-secondary">Restart</button>
+      </div>
+      <br><br>
+    </div>    
+
+  </div>
+
+</div>
+
+<script>
+  const ingredientList = JSON.parse('{{ ingredients | tojson | safe}}');
+</script>
+<script src="js/step2-scripts.js"></script>
+
+{% endblock %}

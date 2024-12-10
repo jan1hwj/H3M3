@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Step 1: Input Ingredients{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  <div class="card text-bg-light mb-3" style="max-width: auto;">
+    <div class="card-header">Instruction</div>
+    <div class="card-body">
+      <h5 class="card-title">Step 1: Input Your Ingredients</h5>
+      <p class="card-text">1. Drag and drop an image of your food ingredients, and our powerful image recognition model will automatically identify ingredients for you.
+        <br>
+        2. The results will be shown on the right side of the text area. You can manually add, edit, or remove any ingredients.
+        <br>
+        3. When you're ready, click the "Next Step" button to further modify your recipe!
+      </p>
+    </div>
+  </div>
+  <br>
+    
+  <div class="row">
+
+    <!-- Left Column: Upload Ingredients Image -->
+    <div class="col-md-6">
+      <h5><b>Enter Ingredients Manually</b></h5>
+      <small class="form-text text-muted">You can upload an image file of your food ingredients.</small>
+  
+      <form id="uploadForm" enctype="multipart/form-data">
+        <div class="drag-drop-area p-4 text-center">
+          <input type="file" name="ingredient_image" id="ingredient_image" class="form-control" onchange="showThumbnail(this)" required>
+        </div>
+        <div class="mt-3">
+          <img id="thumbnailPreview" src="#" alt="Image Preview" class="img-fluid d-none thumbnail-preview">
+        </div>
+        <button type="button" class="btn btn-outline-primary mt-3" onclick="uploadImage()">Upload and Recognize</button>
+      </form>
+    </div>
+
+    <!-- Right Column: Manual Ingredients Entry -->
+    <div class="col-md-6">
+      <h5><b>Enter Ingredients Manually</b></h5>
+      <small class="form-text text-muted">You can manually add or edit ingredients after the detection.</small>
+      <form id="ingredientsForm" action="{{ url_for('step2') }}" method="POST">
+        <textarea id="ingredientsList" name="ingredients" class="form-control" rows="8" placeholder="Detected ingredients will appear here..."></textarea>
+        <br>
+        <button type="submit" class="btn btn-outline-danger">Next Step</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="js/step1-scripts.js"></script>
+
+{% endblock %}

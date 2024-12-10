@@ -1,0 +1,59 @@
+/* General Rules */
+.card-title{
+    color: #111111;
+}
+
+.col-md-6 h5{
+    color:#EF5400;
+}
+
+.thumbnail-preview{
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.step2{
+    margin-top: 16px;
+}
+
+/*Collapse*/
+.collapse{
+    margin-bottom: 16px;
+}
+
+.collapsible{
+    background-color: #f1f2f3;
+    color: #000000;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: 1px solid #c6c7c8;
+    border-radius: 5px;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+  
+.collapse-content{
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border: 1px solid #c6c7c8;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.collapsible:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+    border-radius: 5px 5px 0px 0px;
+  }

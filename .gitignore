@@ -1,0 +1,8 @@
+.env
+.venv
+ipykernel
+torch
+pillow
+transformers
+openai
+__pycache__
