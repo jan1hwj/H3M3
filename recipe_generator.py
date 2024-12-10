@@ -1,14 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-import re
-
-
-def format_recipe_steps(recipe_text):
-    steps = re.split(r'\bStep \d+:\b', recipe_text)
-    formatted_steps = [step.strip() for step in steps if step.strip()]
-    return formatted_steps
-
 
 def generate_recipe_auto(ingredients):
 
@@ -32,8 +24,7 @@ def generate_recipe_auto(ingredients):
 
     chain = prompt | llm | StrOutputParser()
 
-    out_message = chain.invoke({"recipe_auto": ", ".join(ingredients)})
-    return format_recipe_steps(out_message)
+    return chain.invoke({"recipe_auto": ", ".join(ingredients)})
 
 
 def generate_recipe_custom(ingredients, cuisine, servings, flavor):
@@ -64,7 +55,7 @@ def generate_recipe_custom(ingredients, cuisine, servings, flavor):
 
     chain = prompt | llm | StrOutputParser()
 
-    out_message = chain.invoke(
+    return chain.invoke(
         {
             "ingredients": ", ".join(ingredients),
             "cuisine": cuisine,
@@ -72,4 +63,3 @@ def generate_recipe_custom(ingredients, cuisine, servings, flavor):
             "flavor": flavor,
         }
     )
-    return format_recipe_steps(out_message)

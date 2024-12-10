@@ -100,9 +100,5 @@ def generate_recipe_custom_route():
         app.logger.error(f"Error in /generate_recipe_custom: {e}")
         return jsonify({"error": str(e)}), 500
 
-@app.route("/step3")
-def step3():
-    return "Step 3: View Recipe (coming soon!)"
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
