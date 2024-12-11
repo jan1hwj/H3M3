@@ -75,7 +75,7 @@ def generate_recipe_route():
         recipe = generate_recipe_auto(ingredients)
         app.logger.debug(f"Generated recipe:{recipe}")
 
-        return jsonify({"recipe": recipe})
+        return jsonify(recipe)
     except Exception as e:
         app.logger.error(f"Error in /generate_recipe:{str(e)}")
         return jsonify({"error": str(e)}), 500
@@ -95,7 +95,7 @@ def generate_recipe_custom_route():
         recipe = generate_recipe_custom(ingredients, cuisine, servings, flavor)
         app.logger.debug(f"Generated customized recipe: {recipe}")
 
-        return jsonify({"recipe": recipe})
+        return jsonify(recipe)
     except Exception as e:
         app.logger.error(f"Error in /generate_recipe_custom: {e}")
         return jsonify({"error": str(e)}), 500

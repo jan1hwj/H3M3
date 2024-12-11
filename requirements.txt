@@ -8,4 +8,5 @@ huggingface_hub
 openai
 langchain-openai
 langchain_community
-
+langchain-core
+requests
